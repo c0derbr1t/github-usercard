@@ -2,6 +2,7 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+import { token } from './auth.js';
 // axios.get('https://api.github.com/users/c0derbr1t')
 //   .then(response => {
 //     console.log(response);
@@ -20,7 +21,13 @@
 
 const entryPoint = document.querySelector('.cards');
 
-// axios.get('https://api.github.com/users/c0derbr1t')
+let options = {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+}
+
+axios.get('https://api.github.com/users/c0derbr1t', options)
   .then(response => {
     const myCard = newCard(response);
     entryPoint.appendChild(myCard);
@@ -40,7 +47,24 @@ const entryPoint = document.querySelector('.cards');
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  'Issac909',
+  'thericktastic',
+  'cholman',
+  'LoganSorensen',
+  'FreedomWriter'
+];
+
+followersArray.map(user => {
+  axios.get(`https://api.github.com/users/${user}`, options)
+    .then(response => {
+      const followerCard = newCard(response);
+      entryPoint.appendChild(followerCard);
+    })
+    .catch(error => {
+      console.log('Something went wrong with a follower! ' + error);
+    })
+})
 
 
 /* Step 3: Create a function that accepts a single object as its only argument,
@@ -75,11 +99,13 @@ function newCard(myObj) {
         userFollowers = document.createElement('p'),
         userFollowing = document.createElement('p'),
         userBio = document.createElement('p');
+        // userCalendar = document.createElement('div')
 
   userCard.classList.add('card');
   userInfo.classList.add('card-info');
   userName.classList.add('name');
   userUsername.classList.add('username');
+  // userCalendar.classList.add('calendar');
 
   userImage.src = myObj.data.avatar_url;
   if (myObj.data.name !== null) {
@@ -103,7 +129,10 @@ function newCard(myObj) {
   } else {
     userBio.textContent =`••• Bio not provided •••`;
   }
+  
+  // userCalendar = GitHubCalendar('.calendar', `${myObj.data.name}`);
 
+  // userCard.appendChild(userCalendar);
   userCard.appendChild(userImage);
   userCard.appendChild(userInfo);
   userInfo.appendChild(userName);

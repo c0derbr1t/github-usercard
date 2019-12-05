@@ -4,7 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+rel="stylesheet"
+href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
+    />
   </head>
   <body>
     <div class="container">
@@ -16,7 +19,16 @@
       <div class="cards"></div>
     </div>
     <!-- TODO: add CDN library here -->
-    <script src="./GitHubCard/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./GitHubCard/index.js" type='module'></script>
+
+    <script
+  src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"
+></script>
+
+    <!-- <script>
+      GitHubCalendar('.calendar', 'c0derbr1t', { responsive: true })
+    </script> -->
   </body>
 </html>
 <!-- Do NOT change anything here except TODO line -->

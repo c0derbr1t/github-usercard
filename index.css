@@ -123,5 +123,13 @@ body {
   margin: 3px 0 10px;
 }
 
+.calendar {
+  width: 30%;
+  height: auto;
+  border-radius: 3px;
+  position: absolute;
+  right: 0;
+}
+
 
 
