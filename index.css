@@ -95,6 +95,7 @@ body {
   width: 100%;
   padding: 20px;
   display: flex;
+  justify-content: space-between;
   border-radius: 5px;
   box-shadow: 0 1px 6px -2px #000;
   background-color: #FFF;
@@ -126,10 +127,11 @@ body {
 .calendar {
   width: 30%;
   height: auto;
-  border-radius: 3px;
-  position: absolute;
-  right: 0;
+  border-radius: 15px;
+  margin-right: 5px;
+  padding: 10px;
 }
+
 
 
 

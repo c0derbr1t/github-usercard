@@ -98,8 +98,8 @@ function newCard(myObj) {
         userGitHub = document.createElement('a'),
         userFollowers = document.createElement('p'),
         userFollowing = document.createElement('p'),
-        userBio = document.createElement('p');
-        // userCalendar = document.createElement('div')
+        userBio = document.createElement('p'),
+        userCalendar = document.createElement('div');
 
   userCard.classList.add('card');
   userInfo.classList.add('card-info');
@@ -129,10 +129,22 @@ function newCard(myObj) {
   } else {
     userBio.textContent =`••• Bio not provided •••`;
   }
-  
-  // userCalendar = GitHubCalendar('.calendar', `${myObj.data.name}`);
 
-  // userCard.appendChild(userCalendar);
+  userCalendar.addEventListener('mousedown', () => {
+    userCalendar.style.transform = 'scale(1.8)';
+    userCalendar.style.backgroundColor = 'white';
+    userCalendar.style.border = '3px outset #2cb5e8';
+    userCalendar.style.borderRadius = '15px';
+  })
+
+  userCalendar.addEventListener('mouseup', () => {
+    userCalendar.style.transform = 'scale(1)';
+    userCalendar.style.backgroundColor = 'white';
+    userCalendar.style.border = '1px solid white';
+  })
+  
+  GitHubCalendar(userCalendar, `${myObj.data.login}`, { responsive: true });
+ 
   userCard.appendChild(userImage);
   userCard.appendChild(userInfo);
   userInfo.appendChild(userName);
@@ -143,6 +155,7 @@ function newCard(myObj) {
   userInfo.appendChild(userFollowing);
   userInfo.appendChild(userBio);
   userProfile.appendChild(userGitHub);
+  userCard.appendChild(userCalendar);
 
   return userCard;
 }
